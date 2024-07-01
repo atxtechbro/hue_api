@@ -1,5 +1,10 @@
 version: 0.2
 
+env:
+  secrets-manager:
+    bridge_ip: parameter/bridge_ip
+    username: parameter/username
+
 phases:
   install:
     runtime-versions:
@@ -7,6 +12,9 @@ phases:
     commands:
       - echo Installing dependencies...
       - pip install -r requirements.txt -t .
+  pre_build:
+    commands:
+      - echo Preparing build...
   build:
     commands:
       - echo Build started on `date`
@@ -20,4 +28,4 @@ phases:
       - aws s3 cp lambda.zip s3://lambda-deploy-artifacts-20240701/
 artifacts:
   files:
-    - '**/*'
+    - lambda.zip
