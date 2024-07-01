@@ -1,5 +1,5 @@
-import os
 import requests
+import os
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -9,6 +9,8 @@ class HueAPI:
     def __init__(self):
         self.bridge_ip = os.getenv('bridge_ip')
         self.username = os.getenv('username')
+        if not self.bridge_ip or not self.username:
+            raise ValueError("Missing environment variables for bridge IP or username")
         self.base_url = f'http://{self.bridge_ip}/api/{self.username}'
 
     def get_lights(self):
