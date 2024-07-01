@@ -14,3 +14,8 @@ def stargazing_scene(api):
     lights = api.get_lights()
     for light_id in lights:
         api.set_light_state(light_id, {"on": True, "bri": 50, "hue": 47000, "sat": 254})
+
+def wind_down_scene(api):
+    lights = api.get_lights()
+    for light_id in lights:
+        api.set_light_state(light_id, {"on": True, "bri": 50, "hue": 10000, "sat": 144})
