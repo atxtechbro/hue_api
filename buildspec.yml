@@ -11,12 +11,13 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Running unit tests...
-      - python -m unittest discover
-      - echo Build completed on `date`
+      - python -m unittest discover -s tests -p '*_test.py'
   post_build:
     commands:
       - echo Build completed on `date`
+      - echo Packaging the Lambda function...
+      - zip -r lambda.zip .
+      - aws s3 cp lambda.zip s3://my-lambda-artifacts-bucket/
 artifacts:
   files:
     - '**/*'
-  discard-paths: yes
