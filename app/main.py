@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from hue_api import HueAPI
-from scenes import romantic_scene, party_scene, stargazing_scene, wind_down_scene
+from scenes import romantic_scene, party_scene, stargazing_scene, wind_down_scene, work_from_home_scene
 
 app = Flask(__name__)
 api = HueAPI()
@@ -28,6 +28,11 @@ def stargazing():
 def wind_down():
     wind_down_scene(api)
     return 'Wind Down Scene Activated'
+
+@app.route('/work_from_home')
+def work_from_home():
+    work_from_home_scene(api)
+    return 'Work From Home Scene Activated'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
