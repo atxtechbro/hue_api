@@ -17,7 +17,7 @@ phases:
       - echo Build completed on `date`
       - echo Packaging the Lambda function...
       - zip -r lambda.zip .
-      - aws s3 cp lambda.zip s3://my-lambda-artifacts-bucket/
+      - aws s3 cp lambda.zip s3://lambda-deploy-artifacts-20240701/
 artifacts:
   files:
     - '**/*'
