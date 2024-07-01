@@ -1,9 +1,9 @@
 from flask import Flask, render_template
-from .hue_api import HueAPI
-from .scenes import romantic_scene, party_scene, stargazing_scene
+from hue_api import HueAPI
+from scenes import romantic_scene, party_scene, stargazing_scene
 
 app = Flask(__name__)
-api = HueAPI('your_bridge_ip', 'your_username')
+api = HueAPI()
 
 @app.route('/')
 def index():
@@ -26,4 +26,3 @@ def stargazing():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-

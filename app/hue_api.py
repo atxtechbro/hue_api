@@ -1,10 +1,15 @@
+import os
 import requests
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 class HueAPI:
-    def __init__(self, bridge_ip, username):
-        self.bridge_ip = bridge_ip
-        self.username = username
-        self.base_url = f'http://{bridge_ip}/api/{username}'
+    def __init__(self):
+        self.bridge_ip = os.getenv('bridge_ip')
+        self.username = os.getenv('username')
+        self.base_url = f'http://{self.bridge_ip}/api/{self.username}'
 
     def get_lights(self):
         response = requests.get(f'{self.base_url}/lights')
@@ -13,12 +18,3 @@ class HueAPI:
     def set_light_state(self, light_id, state):
         response = requests.put(f'{self.base_url}/lights/{light_id}/state', json=state)
         return response.json()
-
-
-# Example usage:
-bridge_ip = '192.168.1.2'  # Replace with your Philips Hue Bridge IP
-username = 'newusername123456'  # Replace with your generated username
-
-hue_api = HueAPI(bridge_ip, username)
-lights = hue_api.get_lights()
-print(lights)
