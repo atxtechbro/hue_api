@@ -1,7 +1,7 @@
 import sys
 
 from app.hue_api import HueAPI
-from app.scenes import romantic_scene, party_scene, stargazing_scene, wind_down_scene, work_from_home_scene, soccer_game_night, celebrate_goal
+from app.scenes import romantic_scene, party_scene, stargazing_scene, wind_down_scene, work_from_home_scene, chill_soccer_game_night, colombia_goal_celebration, brazil_goal_celebration
 
 def main():
     if len(sys.argv) != 2:
@@ -21,22 +21,12 @@ def main():
         wind_down_scene(api)
     elif scene_name == "work_from_home_scene":
         work_from_home_scene(api)
-    elif scene_name == "soccer_game_night":
-        soccer_game_night(api)
-    elif scene_name == "celebrate_colombia_goal":
-        colombia_colors = [
-            {"hue": 10922, "sat": 254, "bri": 254},  # Yellow
-            {"hue": 0, "sat": 254, "bri": 254},      # Red
-            {"hue": 43690, "sat": 254, "bri": 254},  # Blue
-        ]
-        celebrate_goal(api, colombia_colors)
-    elif scene_name == "celebrate_brazil_goal":
-        brazil_colors = [
-            {"hue": 21845, "sat": 254, "bri": 254},  # Green
-            {"hue": 10922, "sat": 254, "bri": 254},  # Yellow
-            {"hue": 43690, "sat": 254, "bri": 254},  # Blue
-        ]
-        celebrate_goal(api, brazil_colors)
+    elif scene_name == "chill_soccer_game_night":
+        chill_soccer_game_night(api)
+    elif scene_name == "colombia_goal_celebration":
+        colombia_goal_celebration(api)
+    elif scene_name == "brazil_goal_celebration":
+        brazil_goal_celebration(api)
     else:
         print(f"Unknown scene: {scene_name}")
         sys.exit(1)
