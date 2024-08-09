@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
+import { buttonStyle } from './styles';
 
 function Scenes() {
   const triggerScene = (url) => {
@@ -17,27 +18,21 @@ function Scenes() {
       justifyContent="center" 
       alignItems="center" 
       height="100vh"
-      padding="20px"
+      padding="0"
+      margin="0"
       style={{
-        background: 'linear-gradient(to bottom, #1D4E89, #87CEEB)'
+        background: 'linear-gradient(to bottom, #1D4E89, #87CEEB)', // Full-screen gradient background
+        width: '100%',
+        overflow: 'hidden',
       }}
     >
       <Stack 
         spacing={4}
+        alignItems="center" // Center stack items horizontally
       >
         <Button
           variant="contained"
-          style={{ 
-            backgroundColor: '#FFB74D', 
-            color: 'white', 
-            fontSize: '18px', 
-            letterSpacing: '0.75px', 
-            fontWeight: 'bold',
-            textTransform: 'none',
-            borderRadius: '8px',
-            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-            transition: 'transform 0.2s ease-in-out',
-          }}
+          style={{ ...buttonStyle, backgroundColor: '#FFB74D' }} // Soft warm orange
           onClick={() => triggerScene('/wind_down')}
           onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
           onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
@@ -46,17 +41,7 @@ function Scenes() {
         </Button>
         <Button
           variant="contained"
-          style={{ 
-            backgroundColor: '#64B5F6', 
-            color: 'white', 
-            fontSize: '18px', 
-            letterSpacing: '0.75px', 
-            fontWeight: 'bold',
-            textTransform: 'none',
-            borderRadius: '8px',
-            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-            transition: 'transform 0.2s ease-in-out',
-          }}
+          style={{ ...buttonStyle, backgroundColor: '#64B5F6' }} // Soft calm blue
           onClick={() => triggerScene('/work_from_home')}
           onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
           onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
