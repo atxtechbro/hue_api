@@ -1,17 +1,13 @@
 import unittest
 
-from app.scenes import romantic_scene, stargazing_scene, party_scene
+from app.scenes import wind_down_scene, work_from_home_scene
 
 class TestScenes(unittest.TestCase):
-    def test_romantic_scene(self):
+    def test_wind_down_scene(self):
         # Add your test logic here
         pass
 
-    def test_stargazing_scene(self):
-        # Add your test logic here
-        pass
-
-    def test_party_scene(self):
+    def test_work_from_home_scene(self):
         # Add your test logic here
         pass
 

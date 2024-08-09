@@ -3,7 +3,7 @@ import os
 from flask import Flask, send_from_directory
 from flask_cors import CORS
 from hue_api import HueAPI
-from scenes import romantic_scene, party_scene, stargazing_scene, wind_down_scene, work_from_home_scene
+from scenes import wind_down_scene, work_from_home_scene
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -13,27 +13,12 @@ api = HueAPI()
 def index():
     return send_from_directory('static/frontend', 'index.html')
 
-@app.route('/romantic', methods=['GET'])
-def romantic():
-    romantic_scene(api)
-    return 'Romantic Scene Activated', 200
-
-@app.route('/party')
-def party():
-    party_scene(api)
-    return 'Party Scene Activated'
-
-@app.route('/stargazing')
-def stargazing():
-    stargazing_scene(api)
-    return 'Stargazing Scene Activated'
-
-@app.route('/wind_down')
+@app.route('/wind_down', methods=['GET'])
 def wind_down():
     wind_down_scene(api)
-    return 'Wind Down Scene Activated'
+    return 'Wind Down Scene Activated', 200
 
-@app.route('/work_from_home')
+@app.route('/work_from_home', methods=['GET'])
 def work_from_home():
     work_from_home_scene(api)
     return 'Work From Home Scene Activated'
