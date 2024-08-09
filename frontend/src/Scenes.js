@@ -6,7 +6,8 @@ import { buttonStyle } from './styles';
 
 function Scenes() {
   const triggerScene = (url) => {
-    fetch(`http://localhost:5000${url}`)
+    const apiHost = process.env.REACT_APP_API_HOST;
+    fetch(`http://${apiHost}:5000${url}`)
       .then(response => response.text())
       .then(data => alert(data))
       .catch(error => console.error('Error:', error));
