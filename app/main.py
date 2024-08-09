@@ -1,20 +1,22 @@
 import os
 
 from flask import Flask, send_from_directory
+from flask_cors import CORS
 from hue_api import HueAPI
 from scenes import romantic_scene, party_scene, stargazing_scene, wind_down_scene, work_from_home_scene
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 api = HueAPI()
 
 @app.route('/')
 def index():
     return send_from_directory('static/frontend', 'index.html')
 
-@app.route('/romantic')
+@app.route('/romantic', methods=['GET'])
 def romantic():
     romantic_scene(api)
-    return 'Romantic Scene Activated'
+    return 'Romantic Scene Activated', 200
 
 @app.route('/party')
 def party():
