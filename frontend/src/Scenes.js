@@ -14,14 +14,14 @@ function Scenes() {
     <Stack spacing={2}>
       <Button
         variant="contained"
-        color="secondary"
+        style={{ backgroundColor: '#FFB74D', color: 'white' }} // Soft warm orange
         onClick={() => triggerScene('/wind_down')}
       >
         Wind Down Scene
       </Button>
       <Button
         variant="contained"
-        color="primary"
+        style={{ backgroundColor: '#64B5F6', color: 'white' }} // Soft calm blue
         onClick={() => triggerScene('/work_from_home')}
       >
         Work From Home Scene
