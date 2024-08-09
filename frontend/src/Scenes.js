@@ -17,11 +17,11 @@ function Scenes() {
       display="flex" 
       justifyContent="center" 
       alignItems="center" 
-      height="100vh"
+      height="calc(100vh - 60px)" // Adjust height to account for the title area
       padding="0"
       margin="0"
       style={{
-        background: 'linear-gradient(to bottom, #1D4E89, #87CEEB)', // Full-screen gradient background
+        background: 'linear-gradient(to bottom, #1D4E89, #87CEEB)', // Same gradient background
         width: '100%',
         overflow: 'hidden',
       }}
