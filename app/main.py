@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+import os
+
+from flask import Flask, send_from_directory
 from hue_api import HueAPI
 from scenes import romantic_scene, party_scene, stargazing_scene, wind_down_scene, work_from_home_scene
 
@@ -7,7 +9,7 @@ api = HueAPI()
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return send_from_directory('static/frontend', 'index.html')
 
 @app.route('/romantic')
 def romantic():
