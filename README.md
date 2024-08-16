@@ -25,6 +25,16 @@ To ensure the application works correctly on mobile devices, follow these steps:
 
 ## Usage
 
+### Command Line Usage (Without Frontend)
+
+If you don't want to spin up the frontend and are on your laptop, you can directly activate lighting scenes from the command line using the `cli.py` script:
+
+```bash
+python cli.py <scene_name>
+```
+Replace `<scene_name>` with `wind_down_scene` or `work_from_home_scene` to activate the respective scene.
+
+
 - Open the web interface.
 - Click the buttons to activate different lighting scenes.
 
