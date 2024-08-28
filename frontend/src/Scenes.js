@@ -41,4 +41,48 @@ function Scenes() {
       justifyContent="center" 
       alignItems="center" 
       height="calc(100vh - 60px)"
-    
+      padding="0"
+      margin="0"
+      style={{
+        background: 'linear-gradient(to bottom, #1D4E89, #87CEEB)',
+        width: '100%',
+        overflow: 'hidden',
+      }}
+    >
+      <Stack spacing={4} alignItems="center">
+        <Button
+          variant="contained"
+          style={{ ...buttonStyle, backgroundColor: '#FFB74D' }}
+          onClick={() => triggerScene('/wind_down')}
+          onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+          onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+        >
+          Wind down scene
+        </Button>
+        <Button
+          variant="contained"
+          style={{ ...buttonStyle, backgroundColor: '#64B5F6' }}
+          onClick={() => triggerScene('/work_from_home')}
+          onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+          onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+        >
+          Work from home scene
+        </Button>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Start Time:
+            <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
+          </label>
+          <label>
+            End Time:
+            <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
+          </label>
+          <button type="submit">Save</button>
+        </form>
+        {feedback && <p>{feedback}</p>} {/* Display feedback message */}
+      </Stack>
+    </Box>
+  );
+}
+
+export default Scenes;
