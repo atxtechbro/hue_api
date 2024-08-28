@@ -1,0 +1,34 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Work From Home Scene",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/app/main.py",
+        "args": [
+          "work_from_home"
+        ],
+        "console": "integratedTerminal",
+        "env": {
+          "FLASK_APP": "app/main.py",
+          "FLASK_ENV": "development"
+        }
+      },
+      {
+        "name": "Wind Down Scene",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/app/main.py",
+        "args": [
+          "wind_down"
+        ],
+        "console": "integratedTerminal",
+        "env": {
+          "FLASK_APP": "app/main.py",
+          "FLASK_ENV": "development"
+        }
+      }
+    ]
+  }
+  
