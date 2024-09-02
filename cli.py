@@ -24,7 +24,7 @@ def main():
     if scene_name in scene_map:
         light_id = scene_map[scene_name]
 
-        light_status_before = api.get_light_status(light_id)
+        light_status_before = api.set_light_state(light_id)
         print(f"Light status before applying {scene_name}:", light_status_before)
 
     # Set the scene
@@ -49,7 +49,7 @@ def main():
 
     # Fetch and print the current status after applying the new state
     if scene_name in scene_map:
-        light_status_after = api.get_light_status(light_id)
+        light_status_after = api.set_light_state(light_id)
         print(f"Light status after applying {scene_name}:", light_status_after)
 
 if __name__ == "__main__":
