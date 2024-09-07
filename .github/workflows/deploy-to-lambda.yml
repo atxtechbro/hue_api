@@ -1,0 +1,33 @@
+name: Deploy to AWS Lambda
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install AWS SAM CLI
+        run: |
+          pip install aws-sam-cli
+
+      - name: Deploy to AWS Lambda
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          sam deploy \
+            --template-file packaged.yaml \
+            --stack-name hue-lighting-stack \
+            --capabilities CAPABILITY_IAM \
+            --parameter-overrides BridgeIP=${{ secrets.BRIDGE_IP }} HueUsername=${{ secrets.HUE_USERNAME }} \
+            --no-confirm-changeset
