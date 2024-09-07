@@ -3,18 +3,37 @@ Transform: AWS::Serverless-2016-10-31
 Description: Hue API Lambda function template
 
 Resources:
+  HueLightingFunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: HueLightingPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - secretsmanager:GetSecretValue
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource:
+                  - "arn:aws:secretsmanager:us-east-1:975049905873:secret:hue-api/username"
+                  - "arn:aws:secretsmanager:us-east-1:975049905873:secret:hue-api/bridge-ip"
+
   HueLightingFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: lambda_function.lambda_handler
       Runtime: python3.12
+      Role: !GetAtt HueLightingFunctionRole.Arn
       CodeUri: .
       MemorySize: 128
       Timeout: 3
-      Policies:
-        - AWSLambdaBasicExecutionRole
-        - Statement:
-            Effect: Allow
-            Action:
-              - secretsmanager:GetSecretValue
-            Resource: arn:aws:secretsmanager:<region>:<account-id>:secret:hue-api/* # Replace with your region and account ID
