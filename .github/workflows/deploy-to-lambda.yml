@@ -23,7 +23,7 @@ jobs:
 
       - name: Package the SAM Application
         run: |
-          sam package --template-file template.yml --s3-bucket your-s3-bucket-name --output-template-file packaged.yaml
+          sam package --template-file template.yml --s3-bucket your-s3-bucket-name --output-template-file packaged.yaml --region us-east-2
 
       - name: Deploy to AWS Lambda
         env:
@@ -35,4 +35,5 @@ jobs:
             --stack-name hue-lighting-stack \
             --capabilities CAPABILITY_IAM \
             --parameter-overrides BridgeIP=${{ secrets.BRIDGE_IP }} HueUsername=${{ secrets.HUE_USERNAME }} \
+            --region us-east-2 \
             --no-confirm-changeset
