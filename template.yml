@@ -11,9 +11,6 @@ Resources:
       CodeUri: .
       MemorySize: 128
       Timeout: 3
-      Environment:
-        Variables:
-          # Optional: If you need to pass additional static environment variables
       Policies:
         - AWSLambdaBasicExecutionRole
         - Statement:
