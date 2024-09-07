@@ -24,9 +24,12 @@ Resources:
           BRIDGE_IP: !Ref BridgeIP
           HUE_USERNAME: !Ref HueUsername
       Policies:
-        - AWSLambdaBasicExecutionRole
+        - AWSLambdaBasicExecutionRole # Predefined role for basic Lambda execution permissions
         - Statement:
             - Effect: Allow
-              Action: lambda:InvokeFunction
-              Principal: apigateway.amazonaws.com
-              Resource: arn:aws:lambda:<YOUR_REGION>:<YOUR_ACCOUNT_ID>:function:<LAMBDA_FUNCTION_NAME>
+              Action:
+                - lambda:InvokeFunction
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+              Resource: "*"
