@@ -1,6 +1,7 @@
-from flask import Flask, send_from_directory, jsonify
-from flask_cors import CORS  # Re-added CORS for cross-origin requests
-from app.hue_api import HueAPI
+from flask import Flask, jsonify, send_from_directory
+from flask_cors import CORS
+
+from hue_api import HueAPI
 
 app = Flask(__name__, static_folder='static/frontend/build')
 CORS(app)  # Enable CORS for all routes

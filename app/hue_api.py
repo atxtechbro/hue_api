@@ -1,6 +1,8 @@
-import requests
 import os
+
+import requests
 from dotenv import load_dotenv
+
 from app.circadian import get_circadian_lighting
 
 # Load environment variables from .env file
@@ -9,7 +11,9 @@ load_dotenv()
 class HueAPI:
     def __init__(self):
         self.bridge_ip = os.getenv('bridge_ip')
-        self.username = os.getenv('username')
+        self.username = os.getenv('hue_username')
+        print(f"Bridge IP: {self.bridge_ip}")
+        print(f"Username: {self.username}")
         if not self.bridge_ip or not self.username:
             raise ValueError("Missing environment variables for bridge IP or username")
         self.base_url = f'http://{self.bridge_ip}/api/{self.username}'
