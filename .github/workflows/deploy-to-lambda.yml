@@ -37,6 +37,5 @@ jobs:
             --template-file packaged.yaml \
             --stack-name hue-lighting-stack \
             --capabilities CAPABILITY_IAM \
-            --parameter-overrides BridgeIP=${{ secrets.BRIDGE_IP }} HueUsername=${{ secrets.HUE_USERNAME }} \
             --region us-east-2 \
             --no-confirm-changeset

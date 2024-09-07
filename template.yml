@@ -2,14 +2,6 @@ AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: Hue API Lambda function template
 
-Parameters:
-  BridgeIP:
-    Type: String
-    Description: "IP address of the Hue Bridge"
-  HueUsername:
-    Type: String
-    Description: "Username for the Hue Bridge API"
-
 Resources:
   HueLightingFunction:
     Type: AWS::Serverless::Function
@@ -21,15 +13,11 @@ Resources:
       Timeout: 3
       Environment:
         Variables:
-          BRIDGE_IP: !Ref BridgeIP
-          HUE_USERNAME: !Ref HueUsername
+          # Optional: If you need to pass additional static environment variables
       Policies:
-        - AWSLambdaBasicExecutionRole # Predefined role for basic Lambda execution permissions
+        - AWSLambdaBasicExecutionRole
         - Statement:
-            - Effect: Allow
-              Action:
-                - lambda:InvokeFunction
-                - logs:CreateLogGroup
-                - logs:CreateLogStream
-                - logs:PutLogEvents
-              Resource: "*"
+            Effect: Allow
+            Action:
+              - secretsmanager:GetSecretValue
+            Resource: arn:aws:secretsmanager:<region>:<account-id>:secret:hue-api/* # Replace with your region and account ID
