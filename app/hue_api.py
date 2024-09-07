@@ -51,11 +51,9 @@ class HueAPI:
 
     def set_circadian_lighting(self):
         """
-        Set circadian lighting for all lights.
-        Uses get_circadian_lighting to determine light settings.
+        Automatically sets the appropriate scene based on circadian lighting.
         """
-        light_settings = get_circadian_lighting()
-        # Assuming light_settings is a dictionary of {light_id: state}
-        for light_id, state in light_settings.items():
-            self.set_light_state(light_id, state)
-        return {'status': 'Circadian lighting set successfully'}
+        scene_name = get_circadian_lighting()  # Get the scene name based on the current time
+        print(f"Activating scene: {scene_name}")
+        response = self.set_light_state(scene_name)
+        return {'status': f'{scene_name} activated successfully'}
