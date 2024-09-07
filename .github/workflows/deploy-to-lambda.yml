@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -19,6 +20,10 @@ jobs:
       - name: Install AWS SAM CLI
         run: |
           pip install aws-sam-cli
+
+      - name: Package the SAM Application
+        run: |
+          sam package --template-file template.yml --s3-bucket your-s3-bucket-name --output-template-file packaged.yaml
 
       - name: Deploy to AWS Lambda
         env:
