@@ -57,3 +57,11 @@ class HueAPI:
         print(f"Activating scene: {scene_name}")
         response = self.set_light_state(scene_name)
         return {'status': f'{scene_name} activated successfully'}
+
+    def get_light_state(self, light_id):
+        """Fetch the current state of a specific light."""
+        response = requests.get(f'{self.base_url}/lights/{light_id}')
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return {'error': f"Failed to get state for light {light_id}"}

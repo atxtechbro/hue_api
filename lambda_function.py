@@ -1,5 +1,5 @@
 import json
-
+from app.dynamodb import get_user_data
 import boto3
 
 
@@ -28,3 +28,18 @@ def lambda_handler(event, context):
         'statusCode': 200,
         'body': json.dumps('Circadian lighting automation triggered!')
     }
+
+def get_user_preferences(user_id):
+    user_data = get_user_data(user_id)
+    if user_data is None:
+        raise ValueError("User preferences not found")
+    return user_data
+
+def get_current_scene(time_of_day):
+    # Add logic to determine the current scene based on the time of day
+    if time_of_day == "09:00":
+        return {"brightness": 100, "color": "cool_white"}
+    elif time_of_day == "21:00":
+        return {"brightness": 50, "color": "warm_white"}
+    else:
+        return None
