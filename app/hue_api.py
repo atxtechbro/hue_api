@@ -44,7 +44,8 @@ class HueAPI:
                 light_id = light['light_id']
                 state = light['state']
                 response = requests.put(f'{self.base_url}/lights/{light_id}/state', json=state)
-                print(f"API Response for Light {light_id}: {response.json()}")
+                print(f"Sending request to {self.base_url}/lights/{light_id}/state with state: {state}")
+                print(f"API Response for Light {light_id}: {response.status_code}, {response.json()}")
             return {'status': 'All lights updated successfully'}
         else:
             return {'error': 'Scene not found'}
