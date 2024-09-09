@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  LightingPreferencesDB:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: LightingPreferences
+      AttributeDefinitions:
+        - AttributeName: "UserID"
+          AttributeType: "S"
+        - AttributeName: "SceneName"
+          AttributeType: "S"
+        - AttributeName: "TimeOfDay"
+          AttributeType: "S"
+        - AttributeName: "Group"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "UserID"
+          KeyType: "HASH"
+        - AttributeName: "SceneName"
+          KeyType: "RANGE"
+      BillingMode: PAY_PER_REQUEST
+      GlobalSecondaryIndexes:
+        - IndexName: TimeOfDayIndex
+          KeySchema:
+            - AttributeName: "TimeOfDay"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: ALL
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+  ArchivedScenesDB:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ArchivedScenes
+      AttributeDefinitions:
+        - AttributeName: "UserID"
+          AttributeType: "S"
+        - AttributeName: "SceneName"
+          AttributeType: "S"
+        - AttributeName: "Version"
+          AttributeType: "N"
+      KeySchema:
+        - AttributeName: "UserID"
+          KeyType: "HASH"
+        - AttributeName: "SceneName"
+          KeyType: "RANGE"
+      BillingMode: PAY_PER_REQUEST

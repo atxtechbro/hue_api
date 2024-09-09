@@ -17,3 +17,4 @@ Werkzeug==3.0.4
 pytest
 boto3
 pytest-mock
+pytest-html
