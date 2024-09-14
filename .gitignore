@@ -30,3 +30,5 @@ __pycache__/
 
 # Ignore generated packaged.yaml file
 packaged.yaml
+
+requests_layer
